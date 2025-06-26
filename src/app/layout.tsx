@@ -2,6 +2,7 @@
 import './globals.css'
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script src="charting_library/charting_library.standalone.js"></script>
-        <script src="datafeeds/udf/dist/bundle.js"></script>
+        {/* Use Next.js Script component for better performance */}
+        <Script
+          src="charting_library/charting_library.standalone.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="datafeeds/udf/dist/bundle.js"
+          strategy="beforeInteractive"
+        />
       </head>
       <body className={inter.className}>
         {children}
